@@ -1,11 +1,58 @@
 "===================================================================================
 "         FILE:  .vimrc
 "  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
-"       AUTHOR:  Dr.-Ing. Fritz Mehner
-"      CREATED:  04.04.2009
-"     REVISION:  $Id: customization.vimrc,v 1.6 2009/10/03 12:24:30 mehner Exp $
+"       AUTHOR:  Lei Wang
+"      CREATED:  01.11.2015
+"     REVISION:  $Id: customization.vimrc,v 2.0 2015/01/11 12:24:30 mehner Exp $
 "===================================================================================
 "
+"===================================================================================
+" VUNDLE SETTINGS
+"===================================================================================
+set nocompatible              " be iMproved,  required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively,  pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+"
+" let Vundle manage Vundle,  required
+Plugin 'gmarik/Vundle.vim'
+"
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup',  {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+" Plugin 'user/L9',  {'name': 'newL9'}
+"
+Plugin 'fatih/vim-go'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes,  instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line)}})))
+let mapleader = ","
 "===================================================================================
 " GENERAL SETTINGS
 "===================================================================================
@@ -14,14 +61,14 @@
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 "-------------------------------------------------------------------------------
-set nocompatible
+"set nocompatible
 "
 "-------------------------------------------------------------------------------
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
 "-------------------------------------------------------------------------------
-filetype  plugin on
-filetype  indent on
+"filetype  plugin on
+"filetype  indent on
 "
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
@@ -253,7 +300,7 @@ if exists("g:did_load_filetypes")
 endif
 set runtimepath+=/usr/lib/go/misc/vim
 filetype	plugin	indent	on
-autocmd	FileType	go autocmd BufWritePre <buffer> Fmt
+"autocmd	FileType	go autocmd BufWritePre <buffer> Fmt
 
 "YCM(YouCompleteMe) plugin config
 "set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
@@ -288,3 +335,16 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
