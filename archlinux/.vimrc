@@ -53,6 +53,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line)}})))
 let mapleader = ","
+
 "===================================================================================
 " GENERAL SETTINGS
 "===================================================================================
@@ -313,7 +314,7 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
-let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion=['<Tab>', '<c-n>']
 "let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion=['<c-p>']
 "let g:ycm_key_list_previous_completion = ['<Up>']
@@ -333,6 +334,8 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"let g:ycm_add_preview_to_completeopt = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 
