@@ -1,0 +1,168 @@
+! normal setting
+!URxvt.termName:rxvt-256color
+!URxvt.termName:rxvt-unicode
+URxvt.termName:xterm
+URxvt.cursorBlink:false
+URxvt.saveLines:10240
+
+! Display setting
+Xft.dpi:96
+Xft.rgba:rgb
+Xft.hinting:           true
+! If BCI enabled, there is no need to use autohint
+Xft.autohint:          false
+Xft.hintstyle:         hintmedium
+Xft.antialias:         true
+Xft.rh_prefer_bitmaps: true
+Xft.lcdfilter:         lcddefault6
+
+URxvt.geometry:80X24
+URxvt.visualBell:false
+URxvt.inheritPixmap:true
+
+! false transparency
+URxvt.transparent:true
+URxvt.shading:10
+
+! true transparency
+!URxvt.depth:32
+!URxvt.background:rgba:1111/1111/1111/dddd
+
+! scroll setting
+URxvt.scrollBar_right:true
+URxvt.scrollTtyKeypress:true
+URxvt.scrollTtyOutput::false
+URxvt.scrollWithBuffer:false
+URxvt.scrollstyle:plain
+
+! input method and font setting
+URxvt.preeditType:Root
+URxvt.inputMethod:ibus
+!URxvt.imFont:xft:YaHei Consolas Hybrid:size=12
+URxvt.imLocale:zh_CN.UTF-8
+!URxvt.font:xft:YaHei Consolas Hybrid :style=Regular:size=12, xft:PowerlineSymbols:style=Medium:size=12
+URxvt.font:xft:Meslo LG S DZ for Powerline:style=RegularForPowerline:size=11
+!URxvt.font:xft:DejaVu sans Mono for Powerline:style=Regular:size=12
+!URxvt.font:xft:Terminus:size=14
+!URxvt.boldFont:xft:YaHei Consolas Hybrid:size=12:bold
+!URxvt.italicFont: xft:YaHei Consolas Hybrid:size=12:Italic
+!URxvt.boldItalicFont: size=12:Bold Italic
+! The First Line define the base size of the font, for example 9x15bold, the next font use pixelsize, if we use size ,we can ignore the first base size defination, like we did above.
+!URxvt.font:-*-fixed-bold-r-*--18-*-*-*-*-*-iso10646-1,\
+! 		xft:Inconsolata:size=12:bold:antialias=false,\
+! 		-*-terminus-*-*-*-*-12-*-*-*-*-*-*-* :pixelsize=12:antialias=false,\
+!		xft:WenQuanYi Bitmap Song :pixelsize=14:antialias=false
+URxvt.multichar_encoding:UTF-8
+!URxvt.letterSpace:-1
+
+! color setting
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+
+! Light
+
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+
+
+!URxvt.cursorColor:blue
+!URxvt.foreground:green
+!URxvt.background:black
+!URxvt.tintColor:lightgray
+!URxvt.urgentOnBell: true
+!
+!URxvt.colorBD:yellow
+!URxvt.colorIT:magenta
+!URxvt.colorUL:green
+!URxvt.underlineColor:cyan
+!
+!URxvt.color0:black
+!URxvt.color1:red3
+!URxvt.color2:springgreen
+!URxvt.color3:wheat3
+!URxvt.color4:navy
+!URxvt.color5:magenta4
+!URxvt.color6:steelblue1
+!URxvt.color7:gray85
+!URxvt.color8:gray10
+!URxvt.color9:SkyBlue3
+!URxvt.color10:chartreuse3
+!URxvt.color11:lightgoldenrod2
+!URxvt.color12:SkyBlue1
+!URxvt.color13:pink1
+!URxvt.color14:lightblue1
+!URxvt.color15:#dbeff9
+
+! solarized color theme for x1
+! URxvt.background:            S_base03
+
+URxvt.background:              S_base03
+URxvt.foreground:              S_base0
+URxvt.fading:                  40
+URxvt.fadeColor:               S_base03
+URxvt.cursorColor:             S_base1
+URxvt.pointerColorBackground:  S_base01
+URxvt.pointerColorForeground:  S_base1
+
+URxvt.color0:                  S_base02
+URxvt.color1:                  S_red
+URxvt.color2:                  S_green
+URxvt.color3:                  S_yellow
+URxvt.color4:                  S_blue
+URxvt.color5:                  S_magenta
+URxvt.color6:                  S_cyan
+URxvt.color7:                  S_base2
+URxvt.color9:                  S_orange
+URxvt.color8:                  S_base03
+URxvt.color10:                 S_base01
+URxvt.color11:                 S_base00
+URxvt.color12:                 S_base0
+URxvt.color13:                 S_violet
+URxvt.color14:                 S_base1
+URxvt.color15:                 S_base3
+
+
+! Tab set
+!URxvt.perl-ext-common: default,tabbed
+!URxvt.tabbed.tab-fg: 12
+!URxvt.tabbed.tab-bg: 0
+!URxvt.tabbed.tabbar-fg: 4
+
+! Enable the tab and matcher extention
+URxvt.perl-lib:/usr/lib/urxvt/perl
+URxvt.perl-ext-common: default,tabbed,matcher,clipboard
+URxvt.iso14755: False
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+! UrlLauncher
+URxvt.urlLauncher:      /usr/bin/chromium-browser
+URxvt.underlineURLs:	True
+URxvt.matcher.button:   1
+
