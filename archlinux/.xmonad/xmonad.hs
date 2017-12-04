@@ -86,18 +86,18 @@ myManageHook = composeAll . concat $
 		, [ className =? vid --> doShift "8:vid" | vid <- myClassVidShifts]
 		, [ className =? doc --> doF (W.shift "5:doc") | doc <- myClassDocShifts]
 		, [ className =? code --> doF (W.shift "3:code") | code <- myClassCodeShifts]
-		, [ className =? pdf --> doF (W.shift "4:pdf") | pdf <- myClassPdfShifts]
+		, [ className =? mail --> doF (W.shift "4:mail") | mail <- myClassMailShifts]
 	]
 		where
 			myIgnores = ["trayer"]
 			myFloats  = []
 			myOtherFloats = []
-			myClassWebShifts = ["Firefox","Filezilla","Opera", "OperaNext","Chromium", "Chrome"]
+			myClassWebShifts = ["Firefox","Filezilla","Opera", "OperaNext","chromium-browser-chromium", "Chrome", "Google-chrome", "Google-chrome-unstable"]
 			myClassChatShifts = ["Pidgin","Skype","LibFx","QQ for Linux"]
 			myClassVidShifts = ["Smplayer","MPlayer","Audacious"]
-			myClassDocShifts = ["VCLSalFrame.DocumentWindow", "EIO",  "libreoffice*", "XMind"]
-			myClassCodeShifts = ["Eclipse"]
-			myClassPdfShifts = ["Zim", "Evince", "Apvlv", "Acroread"]
+			myClassDocShifts = ["VCLSalFrame.DocumentWindow", "EIO",  "libreoffice*", "XMind", "Openoffice"]
+			myClassCodeShifts = ["Eclipse", "jetbrains-idea-ce"]
+			myClassMailShifts = ["Zim", "Evince", "Apvlv", "Acroread", "Thunderbird"]
  
  
 --logHook
@@ -131,16 +131,17 @@ customPP = defaultPP {
 ---- dzen2
 --dzen2StatusBar = "dzen2 -x '0' -y '0' -h '24' -w '1024' -ta 'l' -fg '#FFFFFF' -bg '#000000' -fn '-*-Fixed-medium-r-normal-*-13-*-*-*-*-*-*-*'"
  
--- some nice colors for the prompt windows to match the dzen status bar.
+-- some nice colors for the prompt windows to match the xmobar/dzen2 status bar.
 myXPConfig = defaultXPConfig                                    
     { 
 --	font  = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u" 
-	font = "xft:YaHei Consolas Hybrid :size=10:antialias=false"
+	font = "xft:YaHei Consolas Hybrid :size=11:antialias=false"
 	,fgColor = "#00FFFF"
 	, bgColor = "#000000"
 	, bgHLight    = "#000000"
 	, fgHLight    = "#FF0000"
 	, position = Top
+	, height = 29
     }
  
 --- My Theme For Tabbed layout
@@ -210,7 +211,7 @@ myFocusedBorderColor = "#FF0000"
  
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:term", "2:web", "3:code", "4:pdf", "5:doc", "6:virtual" ,"7:file", "8:vid", "9:gimp"] 
+myWorkspaces = ["1:term", "2:web", "3:code", "4:mail", "5:doc", "6:virtual" ,"7:file", "8:vid", "9:gimp"] 
 --
  
 -- Switch to the "web" workspace

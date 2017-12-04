@@ -1,18 +1,19 @@
 Config { 
-	font = "xft:YaHei Consolas Hybrid :size=11:bold:antialias=false"
+	font = "xft:YaHei Consolas Hybrid :size=14:antialias=false"
+		--font = "xft:YaHei Consolas Hybrid :size=14:bold:antialias=false"
 		, bgColor = "black"
 		, fgColor = "grey"
-		--, position = TopW L 95 
-		, position = TopW	L	100
+		, position = TopW L 95 
+		--, position = TopW	L	100
 		, commands = [ 
 		-- weather monitor
 		Run Weather "RJTT" [ "--template",  "<skyCondition> | 
 		<fc=#4682B4><tempC></fc>°C | 
 		<fc=#4682B4><rh></fc>% | 
 		<fc=#4682B4><pressure></fc>hPa"] 36000
-		, Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
+		--, Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
 		-- cpu core monitor
-		,  Run MultiCpu      [ "--template" ,  "Cpu: <total0>%|<total1>%"
+		,  Run MultiCpu      [ "--template" ,  "Cpu:<total0>|<total1>|<total2>|<total3>|<total4>|<total5>|<total6>|<total7>%"
 		,  "--Low"      ,  "50"         -- units: %
 		,  "--High"     ,  "85"         -- units: %
 		,  "--low"      ,  "darkgreen"
@@ -20,35 +21,26 @@ Config {
 		,  "--high"     ,  "darkred"
 		] 10
 		-- cpu core temperature monitor
-		,  Run CoreTemp       [ "--template" ,  "Temp: <core0>°C|<core1>°C"
+		,  Run CoreTemp       [ "--template" ,  "Temp:<core0>°C"
 		,  "--Low"      ,  "70"        -- units: °C
 		,  "--High"     ,  "80"        -- units: °C
 		,  "--low"      ,  "darkgreen"
 		,  "--normal"   ,  "darkorange"
 		,  "--high"     ,  "darkred"
 		] 50
-		, Run Memory ["-t","Mem: <usedratio>%"] 10
-		,	Run DynNetwork     [ "--template" ,  "<dev>: <tx>kB/s|<rx>kB/s"
-		,  "--Low"      ,  "1000"       -- units: kB/s
-		,  "--High"     ,  "5000"       -- units: kB/s
+		, Run Memory ["-t","Mem:<usedratio>%"] 10
+		,	Run DynNetwork     [ "--template" ,  "<dev>:<tx>kB/s|<rx>kB/s"
+		,  "--Low"      ,  "100000"       -- units: kB/s
+		,  "--High"     ,  "500000"       -- units: kB/s
 		,  "--low"      ,  "darkgreen"
 		,  "--normal"   ,  "darkorange"
 		,  "--high"     ,  "darkred"
 		] 10
-		,  Run Battery        [ "--template" ,  "Batt: <acstatus>"
-		,  "--Low"      ,  "10"        -- units: %
-		,  "--High"     ,  "80"        -- units: %
-		,  "--low"      ,  "darkred"
-		,  "--normal"   ,  "darkorange"
-		,  "--high"     ,  "darkgreen"
-		,  "--" -- battery specific options
-		-- discharging status
-		,  "-o"	,  "<left>% (<timeleft>)"
-		-- AC "on" status
-		,  "-O"	,  "<fc=#dAA520>Charging</fc>"
-		-- charged status
-		,  "-i"	,  "<fc=#006000>Charged</fc>"
-		] 50
+		,  Run Battery	["-t",  "<acstatus>"
+		,  "-L",  "10",  "-H",  "80"
+		,  "-l",  "red",  "-h",  "green"
+		,  "--",  "-O",  "Charging",  "-o",  "Batt:<left>%"
+		] 10
 		, Run Date "%a %Y-%m-%d %H:%M" "date" 10
 		-- keyboard layout indicator
 		,  Run Kbd            [ ("us(dvorak)" ,  "<fc=#00008B>DV</fc>")
@@ -58,7 +50,7 @@ Config {
 		]
 		, sepChar = "%"
 		, alignSep = "}{"
-		, template = "%StdinReader% }{ %multicpu% %memory% %dynnetwork% %battery% <fc=#ee9a00>%date%</fc>"
+		, template = "%StdinReader% }{ %multicpu% %coretemp% %memory% %dynnetwork% %battery% <fc=#ee9a00>%date%</fc>"
 
 		-- general behavior
 		,  lowerOnStart =     True    -- send to bottom of window stack on start

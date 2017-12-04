@@ -13,13 +13,13 @@ set nocompatible              " be iMproved,  required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 " alternatively,  pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 "
 " let Vundle manage Vundle,  required
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
 "
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -33,13 +33,31 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup',  {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup',  {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 " Plugin 'user/L9',  {'name': 'newL9'}
 "
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
+" Plugin 'lervag/vimtex'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'rust-lang/rust.vim'
+" Plugin 'racer-rust/vim-racer'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+" call vundle#end()            " required
+
+" Next generation vundle
+call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go'
+Plug 'lervag/vimtex'
+Plug 'altercation/vim-colors-solarized'
+Plug 'Valloric/YouCompleteMe'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+
+" Add plugins to &runtimepath
+call plug#end()
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes,  instead use:
 "filetype plugin on
@@ -110,7 +128,7 @@ set hlsearch                    " highlight the last used search pattern
 set incsearch                   " do incremental searching
 set listchars=tab:>.,eol:\$     " strings to use in 'list' mode
 set mouse=a                     " enable the use of the mouse
-set nowrap                      " do not wrap lines
+"set nowrap                      " do not wrap lines
 set popt=left:8pc,right:3pc     " print options
 set ruler                       " show the cursor position all the time
 set shiftwidth=2                " number of spaces to use for each step of indent
@@ -120,6 +138,9 @@ set tabstop=2                   " number of spaces that a <Tab> counts for
 set visualbell                  " visual bell instead of beeping
 set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
+
+set background=dark
+colorscheme solarized
 "
 "===================================================================================
 " BUFFERS, WINDOWS
@@ -351,3 +372,12 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
+" Latex config
+let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -pvc $*'
+set iskeyword+=:
+
+" Rust racer config
+set hidden
+let g:racer_cmd = "/home/wanglei/.cargo/bin/racer"

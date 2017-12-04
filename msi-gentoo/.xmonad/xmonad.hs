@@ -92,7 +92,7 @@ myManageHook = composeAll . concat $
 			myIgnores = ["trayer"]
 			myFloats  = []
 			myOtherFloats = []
-			myClassWebShifts = ["Firefox","Filezilla","Opera", "OperaNext","chromium-browser-chromium", "Chrome", "google-chrome-beta"]
+			myClassWebShifts = ["Firefox","Filezilla","Opera", "OperaNext","chromium-browser-chromium", "Chrome", "Google-chrome", "Google-chrome-unstable"]
 			myClassChatShifts = ["Pidgin","Skype","LibFx","QQ for Linux"]
 			myClassVidShifts = ["Smplayer","MPlayer","Audacious"]
 			myClassDocShifts = ["VCLSalFrame.DocumentWindow", "EIO",  "libreoffice*", "XMind", "Openoffice"]
@@ -131,7 +131,7 @@ customPP = defaultPP {
 ---- dzen2
 --dzen2StatusBar = "dzen2 -x '0' -y '0' -h '24' -w '1024' -ta 'l' -fg '#FFFFFF' -bg '#000000' -fn '-*-Fixed-medium-r-normal-*-13-*-*-*-*-*-*-*'"
  
--- some nice colors for the prompt windows to match the dzen status bar.
+-- some nice colors for the prompt windows to match the xmobar/dzen2 status bar.
 myXPConfig = defaultXPConfig                                    
     { 
 --	font  = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u" 
@@ -141,7 +141,7 @@ myXPConfig = defaultXPConfig
 	, bgHLight    = "#000000"
 	, fgHLight    = "#FF0000"
 	, position = Top
-	, height = 40
+	, height = 29
     }
  
 --- My Theme For Tabbed layout

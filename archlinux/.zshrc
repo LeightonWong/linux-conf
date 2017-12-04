@@ -5,8 +5,10 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
+# Used in agnoster theme
+DEFAULT_USER="wanglei"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -45,13 +47,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git go mvn)
+plugins=(git golang mvn)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/wanglei/code/go/bin:/usr/lib64/chromium/chromedriver:/home/wanglei/code/go/bin:/usr/lib64/chromium/chromedriver"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -103,23 +105,27 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 
-export XIM="fcitx"
-export XMODIFIERS="@im=fcitx"
-export XIM_PROGRAM=fcitx
-export GTK_IM_MODULE=xim
+#export XIM="fcitx"
+#export XMODIFIERS="@im=fcitx"
+#export XIM_PROGRAM=fcitx
+#export GTK_IM_MODULE=XIM
+#export QT_IM_MODULE=XIM
 
 export EDITOR="vim"
 
 #export LC_ALL=en_US.UTF-8
 export LC_CTYPE=zh_CN.UTF-8
 
-#export	PATH=$PATH:/home/wanglei/bin
-
 #Alias
 alias	ll='ls -l --color=auto'
 alias	ls='ls --color=auto'
 alias	l.='ls -d .* --color=auto'
 alias	vi='vim'
+alias go='http_proxy=127.0.0.1:8118 https_proxy=127.0.0.1:8118 go'
 
 export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin:/usr/lib64/chromium/chromedriver
+export GOROOT=/usr/lib64/go
+export GOROOT_BOOTSTRAP=/usr/lib64/go1.4
+export PATH=$PATH:$GOPATH/bin:/home/wanglei/bin:/home/wanglei/.cargo/bin:/home/wanglei/.cabal/bin:~/.local/bin
+export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export HADOOP_HOME=$HOME/tools/hadoop-2.8.1
