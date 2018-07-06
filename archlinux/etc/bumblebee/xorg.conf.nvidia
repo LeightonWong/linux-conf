@@ -1,0 +1,32 @@
+Section "Module"
+    Load "modesetting"
+EndSection
+
+Section "Device"
+    Identifier "Nvidia"
+    Driver "nvidia"
+    BusID "PCI:1:0:0"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+Section "Screen"
+	Identifier "NvidiaScreen"
+	Device     "Nvidia"
+    	Monitor	"NvidiaMonitor"
+#	Option	   "metamodes" "1920x1080 +0+0"
+#	Option	   "MultiGPU" "On"
+#	SubSection "Display"
+#		Viewport   0 0
+#		Depth     24
+#		Modes	"1920x1080"
+#	EndSubSection
+EndSection
+
+Section "Monitor"
+	Identifier   "NvidiaMonitor"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+#	HorizSync    31.0 - 82.0
+#	VertRefresh  57.0 - 63.0
+#	Option	     "DPMS"
+EndSection
