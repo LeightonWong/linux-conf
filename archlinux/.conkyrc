@@ -1,0 +1,204 @@
+conky.config = {
+    out_to_x = false,
+    own_window = false,
+    out_to_console = true,
+    background = false,
+    max_text_width = 0,
+
+    -- Update interval in seconds
+    update_interval = 2.0,
+
+    -- This is the number of times Conky will update before quitting.
+    -- Set to zero to run forever.
+    total_run_times = 0,
+
+    -- Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+    short_units = true,
+
+    -- How strict should if_up be when testing an interface for being up?
+    -- The value is one of up, link or address, to check for the interface
+    -- being solely up, being up and having link or being up, having link
+    -- and an assigned IP address. 
+    if_up_strictness = 'address',
+
+    -- Add spaces to keep things from moving about?  This only affects certain objects.
+    -- use_spacer should have an argument of left, right, or none
+    use_spacer = 'left',
+
+    -- Force UTF8? note that UTF8 support required XFT
+    override_utf8_locale = false,
+
+    -- number of cpu samples to average
+    -- set to 1 to disable averaging
+    cpu_avg_samples = 2,
+
+		-- --- predefined colors - http://www.kgym.jp/freesoft/xrgb.html ---
+		color0 = '#FFFFFF',              -- white
+		color1 = '#FFA500',              -- orange
+		color2 = '#B22222',              -- firebrick
+		color3 = '#696969',              -- dim gray
+		color4 = '#D3D3D3',              -- light gray
+		color5 = '#2F4F4F',              -- dark slate gray
+		color6 = '#FFEC8B',              -- light golden rod
+		color7 = '#54FF9F',              -- sea green
+		color8 = '#FF8C69',              -- salmon
+		color9 = '#FFE7BA', 						 -- wheat
+
+};
+
+conky.text = [[
+[
+    {
+			"full_text": "CPU ${cpu cpu0}%" , 
+    	"separator": false, 
+			"color": ${if_match ${cpu cpu0}<50}
+				"\#00ff00"
+				${else}
+					${if_match ${cpu cpu0}<70}"\#ffff99"
+					${else}
+						${if_match ${cpu cpu0}<90}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		},
+		{
+			"full_text": "${platform coretemp.0/hwmon/hwmon2 temp 1}℃", 
+			"color": ${if_match ${platform coretemp.0/hwmon/hwmon2 temp 1}<50}
+				"\#00ff00"
+				${else}
+					${if_match ${platform coretemp.0/hwmon/hwmon2 temp 1}<60}"\#ffff99"
+					${else}
+						${if_match ${platform coretemp.0/hwmon/hwmon2 temp 1}<70}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+
+		}, 
+    {
+			"full_text": "RAM ${memperc}%" ,
+			"color": ${if_match ${memperc}<50}
+				"\#00ff00"
+				${else}
+					${if_match ${memperc}<70}"\#ffff99"
+					${else}
+						${if_match ${memperc}<90}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+
+		}, 
+		${if_up enp4s0}
+		{
+    	"full_text": "ETH ${addr enp4s0} ",
+			"color": "${color7}", 
+    	#"border": "\#cccccc",
+    	#"background": "\#000000",
+    	#"border_bottom": 2, "border_top": 0, "border_left": 0, "border_right": 2,
+    	"separator": false,
+    	"separator_block_width": 1
+		},
+		{
+			"full_text": "U:${upspeed enp4s0}/S", 
+    	"separator": false,
+			"color": ${if_match ${upspeedf enp4s0}<128}
+				"\#00ff00"
+				${else}
+					${if_match ${upspeedf enp4s0}<256}"\#ffff99"
+					${else}
+						${if_match ${upspeedf enp4s0}<512}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		}, 
+		{
+			"full_text": "D:${downspeed enp4s0}/S", 
+			"color": ${if_match ${downspeedf enp4s0}<256}
+				"\#00ff00"
+				${else}
+					${if_match ${downspeedf enp4s0}<1024}"\#ffff99"
+					${else}
+						${if_match ${downspeedf enp4s0}<2048}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		}, 
+
+		${endif}
+		${if_up wlp2s0}
+		{
+    	"full_text": "WLAN ${addr wlp2s0} ",
+    	"separator": false,
+			"color": "${color7}", 
+    	#"border": "\#cccccc",
+    	#"background": "\#000000",
+    	#"border_bottom": 2, "border_top": 0, "border_left": 0, "border_right": 2,
+    	#"separator": false,
+    	"separator_block_width": 1
+		},
+		{
+			"full_text": "U:${upspeed wlp2s0}/S", 
+    	"separator": false,
+			"color": ${if_match ${upspeedf wlp2s0}<128}
+				"\#00ff00"
+				${else}
+					${if_match ${upspeedf wlp2s0}<256}"\#ffff99"
+					${else}
+						${if_match ${upspeedf wlp2s0}<512}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		}, 
+		{
+			"full_text": "D:${downspeed wlp2s0}/S", 
+			"color": ${if_match ${downspeedf wlp2s0}<256}
+				"\#00ff00"
+				${else}
+					${if_match ${downspeedf wlp2s0}<1024}"\#ffff99"
+					${else}
+						${if_match ${downspeedf wlp2s0}<2048}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		}, 
+
+		${endif}
+		{
+			"full_text": "Bat ${battery_short BAT1}", 
+    	"separator": false, 
+			"color": ${if_match ${battery_percent BAT1}>80}
+				"\#00ff00"
+				${else}
+					${if_match ${battery_percent BAT1}>60}"\#ffff99"
+					${else}
+						${if_match ${battery_percent BAT1}>40}"\#ff9933"
+						${else}
+							"\#ff0000"
+						${endif}
+					${endif}
+				${endif}
+		}, 
+		{
+			"full_text": "${battery_time BAT1}", 
+			"color": "${color9}", 
+    	"separator": true
+		}, 
+		{
+			"full_text": "${time %Y-%m-%d %H:%M %a}", 
+			"color": "\#11ff11"
+		}
+],
+]];

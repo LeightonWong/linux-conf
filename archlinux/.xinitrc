@@ -1,5 +1,5 @@
-#xrandr --setprovideroutputsource modesetting NVIDIA-0
-#xrandr --auto
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 
 export XIM="fcitx"
 export XMODIFIERS="@im=fcitx"
@@ -26,7 +26,7 @@ xscreensaver -no-splash &
 #xmonad startup config
 #xpmroot ~/documents/Pictures/wallpaper/Colos_of_The_Storm_by_Gate_To_Nowhere.jpg &
 #stalontray &
-trayer-srg --edge top --align right --SetDockType true --SetPartialStrut true --expand true --height 29 --width 5% --transparent true --alpha 0 --tint 0x000000 --widthtype percent --heighttype pixel --monitor primary&
+#trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --height 29 --width 5% --transparent true --alpha 0 --tint 0x000000 --widthtype percent --heighttype pixel --monitor primary&
 xrdb -merge $HOME/.Xresources
 xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
@@ -42,5 +42,10 @@ fcitx &
 blueman-applet &
 sh ~/.fehbg
 #exec ck-launch-session xmonad
-exec xmonad
+#exec xmonad
+
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+exec i3
 start-pulseaudio-x11
