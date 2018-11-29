@@ -1,19 +1,14 @@
 Config { 
 	font = "xft:YaHei Consolas Hybrid :size=14:antialias=false"
-		--font = "xft:YaHei Consolas Hybrid :size=14:bold:antialias=false"
-		, bgColor = "black"
-		, fgColor = "grey"
-		, position = TopW L 95 
-		--, position = TopW	L	100
-		, commands = [ 
+	--font = "xft:YaHei Consolas Hybrid :size=14:bold:antialias=false"
+	, bgColor = "black"
+	, fgColor = "grey"
+	, position = TopW L 95
+	, commands = [ 
 		-- weather monitor
-		Run Weather "RJTT" [ "--template",  "<skyCondition> | 
-		<fc=#4682B4><tempC></fc>°C | 
-		<fc=#4682B4><rh></fc>% | 
-		<fc=#4682B4><pressure></fc>hPa"] 36000
-		--, Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
+		Run Weather "RJTT" [ "--template",  "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"] 36000
 		-- cpu core monitor
-		,  Run MultiCpu      [ "--template" ,  "Cpu:<total0>|<total1>|<total2>|<total3>|<total4>|<total5>|<total6>|<total7>%"
+		,  Run MultiCpu      [ "--template" ,  "CPU:<total0>|<total1>|<total2>|<total3>|<total4>|<total5>|<total6>|<total7>%"
 		,  "--Low"      ,  "50"         -- units: %
 		,  "--High"     ,  "85"         -- units: %
 		,  "--low"      ,  "darkgreen"
@@ -48,15 +43,15 @@ Config {
 		]
 		, Run StdinReader
 		]
-		, sepChar = "%"
-		, alignSep = "}{"
-		, template = "%StdinReader% }{ %multicpu% %coretemp% %memory% %dynnetwork% %battery% <fc=#ee9a00>%date%</fc>"
+	, sepChar = "%"
+	, alignSep = "}{"
+	, template = "%StdinReader% }{ %multicpu% %coretemp% %memory% %dynnetwork% %battery% <fc=#ee9a00>%date%</fc>"
 
-		-- general behavior
-		,  lowerOnStart =     True    -- send to bottom of window stack on start
-		,  hideOnStart =      False   -- start with window unmapped (hidden))
-		,  allDesktops =      True    -- show on all desktops
-		,  overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-		,  pickBroadest =     False   -- choose widest display (multi-monitor)
-		,  persistent =       True    -- enable/disable hiding (True = disabled)
+	-- general behavior
+	,  lowerOnStart =     True    -- send to bottom of window stack on start
+	,  hideOnStart =      False   -- start with window unmapped (hidden))
+	,  allDesktops =      True    -- show on all desktops
+	,  overrideRedirect = False	   -- set the Override Redirect flag (Xlib)
+	,  pickBroadest =     False   -- choose widest display (multi-monitor)
+	,  persistent =       True    -- enable/disable hiding (True = disabled)
 }

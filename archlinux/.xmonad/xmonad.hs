@@ -21,7 +21,7 @@ import qualified XMonad.Actions.Submap as SM
  
 -- utils
 import XMonad.Util.Run(spawnPipe)
-import qualified XMonad.Prompt 		as P
+import qualified XMonad.Prompt as P
 import XMonad.Prompt.Shell
 import XMonad.Prompt
  
@@ -50,20 +50,22 @@ import Data.Ratio ((%))
 main = do
         xmproc <- spawnPipe "xmobar"  -- start xmobar
 --		xmproc <- spawnPipe dzen2StatusBar
-    	xmonad 	$ withUrgencyHook NoUrgencyHook $ defaultConfig
-        	{ manageHook = manageDocks <+> myManageHook
-        	, layoutHook = myLayoutHook  
-		, borderWidth = myBorderWidth
-		, normalBorderColor = myNormalBorderColor
-		, focusedBorderColor = myFocusedBorderColor
-		, keys = myKeys
-		, logHook = myLogHook xmproc
-        	, modMask = myModMask  
-        	, terminal = myTerminal
-		, workspaces = myWorkspaces
+        xmonad $ withUrgencyHook NoUrgencyHook $ def
+          { manageHook = manageDocks <+> myManageHook
+          , layoutHook = myLayoutHook  
+    -- this must be in this order, docksEventHook must be last
+    , handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
+    , borderWidth = myBorderWidth
+    , normalBorderColor = myNormalBorderColor
+    , focusedBorderColor = myFocusedBorderColor
+    , keys = myKeys
+    , logHook = myLogHook xmproc
+          , modMask = myModMask  
+          , terminal = myTerminal
+    , workspaces = myWorkspaces
                 , focusFollowsMouse = False 
-		, startupHook = setWMName "LG3D"
-		}
+    , startupHook = setWMName "LG3D"
+    }
  
  
  
@@ -71,7 +73,7 @@ main = do
 -- automaticly switching app to workspace 
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $
-	[
+  [
 		[
 		isFullscreen                  --> doFullFloat
 		, className =?  "Xmessage" 	--> doCenterFloat 
@@ -120,7 +122,7 @@ myLogHook h = dynamicLogWithPP $ customPP
 ---- Looks --
 ---- bar
 customPP :: PP
-customPP = defaultPP { 
+customPP = def { 
      			    ppHidden = xmobarColor "#32CD32" ""
 			  , ppCurrent = xmobarColor "#6495ED" "" . wrap "[" "]"
 			  , ppUrgent = xmobarColor "#DA70D6" "" . wrap "*" "*"
@@ -132,7 +134,7 @@ customPP = defaultPP {
 --dzen2StatusBar = "dzen2 -x '0' -y '0' -h '24' -w '1024' -ta 'l' -fg '#FFFFFF' -bg '#000000' -fn '-*-Fixed-medium-r-normal-*-13-*-*-*-*-*-*-*'"
  
 -- some nice colors for the prompt windows to match the xmobar/dzen2 status bar.
-myXPConfig = defaultXPConfig                                    
+myXPConfig = def
     { 
 --	font  = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u" 
 	font = "xft:YaHei Consolas Hybrid :size=11:antialias=false"
@@ -145,12 +147,12 @@ myXPConfig = defaultXPConfig
     }
  
 --- My Theme For Tabbed layout
-myTheme = defaultTheme { decoHeight = 16
+myTheme = def { decoHeight = 16
                         , activeColor = "#a6c292"
                         , activeBorderColor = "#a6c292"
                         , activeTextColor = "#000000"
                         , inactiveBorderColor = "#000000"
---												, font = "xft:Yahei Consolas Hybrid :size=10:antialias=false"
+												, fontName = "xft:Yahei Consolas Hybrid :size=10:antialias=false"
                         }
  
 --LayoutHook
